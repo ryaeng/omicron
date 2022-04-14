@@ -3,7 +3,7 @@
 #: name = "helios / build-and-test"
 #: variety = "basic"
 #: target = "helios"
-#: rust_toolchain = "nightly-2021-11-24"
+#: rust_toolchain = "stable-1.60"
 #: output_rules = []
 #:
 
@@ -43,7 +43,7 @@ export PATH="$PATH:$PWD/out/cockroachdb/bin:$PWD/out/clickhouse"
 banner build
 export RUSTFLAGS="-D warnings"
 export RUSTDOCFLAGS="-D warnings"
-ptime -m cargo +'nightly-2021-11-24' build --locked --all-targets --verbose
+ptime -m cargo build --locked --all-targets --verbose
 
 #
 # Check that building individual packages as when deploying Omicron succeeds
@@ -56,4 +56,4 @@ ptime -m cargo run --bin omicron-package -- check
 # having to rebuild here.
 #
 banner test
-ptime -m cargo +'nightly-2021-11-24' test --workspace --locked --verbose
+ptime -m cargo test --workspace --locked --verbose
